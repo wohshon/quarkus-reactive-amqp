@@ -1,4 +1,13 @@
+# TL;DR
+
+rehash of guide from quarkus amqp reactive guide
+
+setup multiple reactive data sources 
+
+`http://<host>:8080/data.html`
+
 # amqp-quarkus project
+
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
