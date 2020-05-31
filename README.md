@@ -6,7 +6,14 @@ setup multiple reactive data sources
 
 `http://<host>:8080/data.html`
 
-# amqp-quarkus project
+### Gotchas on OCP 
+```
+quarkus.vertx.max-event-loop-execute-time=PT20
+quarkus.vertx.warning-exception-time=PT20
+quarkus.vertx.event-loops-pool-size=20
+```
+
+## amqp-quarkus project
 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
