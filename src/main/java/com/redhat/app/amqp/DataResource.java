@@ -7,15 +7,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.jboss.resteasy.annotations.SseElementType;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.reactivestreams.Publisher;
 
-@Path("/prices")
+@Path("/rest")
 public class DataResource {
     @Inject
     @Channel("web-data-stream")
     Publisher<Integer> data;
-    
+
+    @Inject
+    @Channel("messages")    
+    Emitter<String> emitter;
+
     @Inject
     @Channel("web-converted-data-stream")
     Publisher<Double> convertedData;
@@ -34,4 +40,12 @@ public class DataResource {
     public Publisher<Double> convert() {
         return convertedData;
     }        
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/amqp/send/{message}")
+    public String send(@PathParam String message) {
+        emitter.send(message);
+        return "";
+    }          
 }

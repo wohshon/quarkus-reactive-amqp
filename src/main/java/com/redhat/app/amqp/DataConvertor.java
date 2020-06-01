@@ -28,4 +28,10 @@ public class DataConvertor {
         log.info("Converting:"+data);
         return data * 2.1; //random decimal number to generate Double
     }    
+
+    @Incoming("messages")
+    public String messageReceiver(String data) {
+        log.info("Incoming messages:"+data);
+        return data;
+    }    
 }
